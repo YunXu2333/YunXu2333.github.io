@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    343
+                    814
                 </div>
                 
 
@@ -488,12 +488,36 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>重命名文件，先创建新的文件对象，然后用renameTo方法重命名，如果文件类型不同没法重命名，比如想把txt文件重命名为exe文件是不可以的</p>
 <pre class=" language-java"><code class="language-java">File f2 <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"d:/yeah.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 f<span class="token punctuation">.</span><span class="token function">renameTo</span><span class="token punctuation">(</span>f2<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>返回当前文件夹下的所有文件和文件夹，list方法返回的是一个String数组</p>
+<p>list()方法返回当前文件夹下的所有文件和文件夹，list方法返回的是一个String数组；这里如果是一个文件夹的话会返回数据，如果是文件的话会返回null；</p>
 <pre class=" language-java"><code class="language-java">String a<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 a<span class="token operator">=</span>f<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 String hhh<span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hhh<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>未完待续，要睡觉了</p>
+<p>listFile()方法返回的是一个文件数组，当前文件对象下的所有文件，如果f不是文件夹的话会抛出空指针异常；</p>
+<pre class=" language-java"><code class="language-java">File f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"d:/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+File<span class="token punctuation">[</span><span class="token punctuation">]</span> fs<span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">listFiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>fs<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>fs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<p>getParent()方法返回一个字符串，表示文件对象f所在的文件夹</p>
+<pre class=" language-java"><code class="language-java">String a <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>getParentFile()方法返回一个文件对象，代表f所在的文件夹</p>
+<pre class=" language-java"><code class="language-java">File a <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">getParentFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>mkdir()方法，在当前文件对象所在的文件夹下创建当前文件对象，有点绕，文件对象不一定存在的，比如说d盘下边没有softwares这个文件夹，我创建一个文件对象然后调用mkdir()方法就可以新建一个文件夹，当然前提是他的父目录也就是d盘要存在。</p>
+<pre class=" language-java"><code class="language-java">File f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"d:/softwares"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+f<span class="token punctuation">.</span><span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>createNewFile()方法，创建一个空文件，像下面这个就会在softwares下面创建一个叫sss的空文件，当然，你文件对象里边有后缀的话就会创建相应的类型文件，这里如果父目录不存在就会产生异常，所以通常会同时产生父目录。</p>
+<pre class=" language-java"><code class="language-java">File f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"d:/softwares/sss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+f<span class="token punctuation">.</span><span class="token function">createNewFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+f<span class="token punctuation">.</span><span class="token function">getParentFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mkdirs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这条语句会把文件对象路径上所有的父目录都创建出来</span></code></pre>
+<p>listRoots()方法会列出系统中所有可用的根盘符，就是c:/这种，返回的是一个文件数组</p>
+<pre class=" language-java"><code class="language-java">File<span class="token punctuation">[</span><span class="token punctuation">]</span> a <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">listRoots</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>delete()方法，删除文件，如果不存在这个文件的话也不会抛出异常，存在的话就会删除</p>
+<pre class=" language-java"><code class="language-java">f<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>虚拟机结束之后删除文件，通常可以用来删除临时文件</p>
+<pre class=" language-java"><code class="language-java">f<span class="token punctuation">.</span><span class="token function">deleteOnExit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -873,7 +897,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">343</span>&nbsp;字
+                class="white-color">814</span>&nbsp;字
             
             
             
